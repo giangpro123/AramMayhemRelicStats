@@ -1,0 +1,4 @@
+bin/
+obj/
+ModUploader-win-x64/
+*.zip

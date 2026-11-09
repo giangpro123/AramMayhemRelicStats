@@ -1,0 +1,18 @@
+{
+  "id": "HextechRelicStats",
+  "name": "Relic Stats: Hextech Runes",
+  "author": "FSNaix",
+  "description": "Adds Relic Stats tooltips to ARAM: Mayhem runes and enemy hexes. Works with the optional Extra Expansion Pack and Watcher Pack if installed.",
+  "version": "0.3.0",
+  "has_pck": false,
+  "has_dll": true,
+  "affects_gameplay": false,
+  "dependencies": [
+    {
+      "id": "RelicStats"
+    },
+    {
+      "id": "HextechRunes"
+    }
+  ]
+}

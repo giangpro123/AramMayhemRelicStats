@@ -1,0 +1,15 @@
+{
+  "title": "Relic Stats: Hextech Runes",
+  "description": "Adds [b]Relic Stats[/b] tooltips to the runes (augments) and enemy hexes of [b]ARAM: Mayhem[/b], showing what each one did for you: damage, healing, Block, Energy, cards, powers and more. Every stat shows [b]this combat[/b] first and the [b]total[/b] for the run second.\n\n[b]Required:[/b] Relic Stats, ARAM: Mayhem.\n[b]Optional expansions:[/b] ARAM: Mayhem: Extra Expansion Pack and ARAM Mayhem: Watcher Pack. Install them and their runes are tracked too; skip them and everything else still works.\n\nDoes not change gameplay.\n\n[h2]Found a bug?[/h2]\nPlease report it in the [b]Comments[/b] section below this description and say which rune or hex it was. You can also add me on Discord: [b]hgiang[/b].\n\n[h2]Credits[/h2]\n[list]\n[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766484698]Relic Stats[/url] by BSchneppe\n[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3747501308]ARAM: Mayhem[/url] by Natsuki\n[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3749708876]ARAM: Mayhem: Extra Expansion Pack[/url] by Natsuki (optional)\n[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3790196886]ARAM Mayhem: Watcher Pack[/url] by Boninall (optional)\n[/list]\n\n[i]This mod was written with the help of Claude AI (Anthropic). Code and descriptions were AI-assisted.[/i]",
+  "visibility": "private",
+  "changeNote": "Bug reports now point to the Comments section; enemy hex stats, per-combat reset, new preview image; Expansion and Watcher packs optional.",
+  "tags": [
+    "QoL",
+    "Relics",
+    "English"
+  ],
+  "dependencies": [
+    3766484698,
+    3747501308
+  ]
+}

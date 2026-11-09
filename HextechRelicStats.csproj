@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>HextechRelicStats</RootNamespace>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+
+    <!-- Override with: dotnet build -p:STS2GameDir=... -p:STS2ModsDir=... -->
+    <STS2GameDir Condition="'$(STS2GameDir)' == '' And $([MSBuild]::IsOSPlatform('Windows'))">E:/SteamLibrary/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64</STS2GameDir>
+    <STS2ModsDir Condition="'$(STS2ModsDir)' == '' And $([MSBuild]::IsOSPlatform('Windows'))">E:/SteamLibrary/steamapps/common/Slay the Spire 2/mods</STS2ModsDir>
+    <STS2GameDir Condition="'$(STS2GameDir)' == '' And $([MSBuild]::IsOSPlatform('Linux'))">$(HOME)/.steam/steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64</STS2GameDir>
+    <STS2ModsDir Condition="'$(STS2ModsDir)' == '' And $([MSBuild]::IsOSPlatform('Linux'))">$(HOME)/.steam/steam/steamapps/common/Slay the Spire 2/mods</STS2ModsDir>
+    <STS2GameDir Condition="'$(STS2GameDir)' == '' And $([MSBuild]::IsOSPlatform('OSX'))">$(HOME)/Library/Application Support/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_arm64</STS2GameDir>
+    <STS2ModsDir Condition="'$(STS2ModsDir)' == '' And $([MSBuild]::IsOSPlatform('OSX'))">$(HOME)/Library/Application Support/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.app/Contents/MacOS/mods</STS2ModsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- RelicStats API. Compile against it only; the real DLL comes from the RelicStats mod at runtime. -->
+    <PackageReference Include="BSchneppe.Sts2.RelicStats" Version="0.7.0" ExcludeAssets="runtime" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Game assemblies (never copied). No compile-time reference to HextechRunes.dll is needed:
+       its rune classes are found by name at runtime, so this survives HextechRunes' per-game-version DLL variants. -->
+  <ItemGroup>
+    <Reference Include="sts2"><HintPath>$(STS2GameDir)/sts2.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(STS2GameDir)/0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="GodotSharp"><HintPath>$(STS2GameDir)/GodotSharp.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <Target Name="CopyModFiles" AfterTargets="Build">
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(STS2ModsDir)/HextechRelicStats" />
+    <Copy SourceFiles="HextechRelicStats.json" DestinationFolder="$(STS2ModsDir)/HextechRelicStats" />
+  </Target>
+</Project>
